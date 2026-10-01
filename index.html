@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laura Gottlieb — Design Researcher</title>
+<meta name="description" content="Laura Gottlieb (she/they) is a design researcher in participatory design, exploring relational sensitivity, joint inquiry and how we can lead together. Now at IVL Swedish Environmental Research Institute.">
+<meta property="og:title" content="Laura Gottlieb — Design Researcher">
+<meta property="og:description" content="Participatory design, relational sensitivity and leading together. Now at IVL Swedish Environmental Research Institute.">
+<meta property="og:image" content="images/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f3eee4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141a16" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke-width='4'%3E%3Ccircle cx='24' cy='26' r='14' stroke='%23c4532d'/%3E%3Ccircle cx='40' cy='26' r='14' stroke='%23d9a62e'/%3E%3Ccircle cx='32' cy='40' r='14' stroke='%232f4a35'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,50;1,9..144,300..700,50&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3eee4;
+    --paper-2: #ebe4d6;
+    --card: #faf7f1;
+    --ink: #1d2620;
+    --ink-soft: #4b564e;
+    --line: rgba(29, 38, 32, .14);
+    --moss: #2f4a35;
+    --sage: #7f9b80;
+    --clay: #c4532d;
+    --ochre: #d9a62e;
+    --c-self: #c4532d;
+    --c-inter: #d9a62e;
+    --c-mat: #3f6b4a;
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --max: 1180px;
+    --gutter: clamp(16px, 5vw, 56px);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #141a16;
+      --paper-2: #1a221d;
+      --card: #1e2721;
+      --ink: #eee8dc;
+      --ink-soft: #b3b9ad;
+      --line: rgba(238, 232, 220, .14);
+      --moss: #a9c4a6;
+      --sage: #7f9b80;
+      --clay: #e07a52;
+      --ochre: #e8bd55;
+      --c-self: #e07a52;
+      --c-inter: #e8bd55;
+      --c-mat: #86b78f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #141a16;
+    --paper-2: #1a221d;
+    --card: #1e2721;
+    --ink: #eee8dc;
+    --ink-soft: #b3b9ad;
+    --line: rgba(238, 232, 220, .14);
+    --moss: #a9c4a6;
+    --sage: #7f9b80;
+    --clay: #e07a52;
+    --ochre: #e8bd55;
+    --c-self: #e07a52;
+    --c-inter: #e8bd55;
+    --c-mat: #86b78f;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /* paper grain */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: .05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  ::selection { background: var(--ochre); color: #1d2620; }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(12px) saturate(1.2);
+    -webkit-backdrop-filter: blur(12px) saturate(1.2);
+    background: color-mix(in srgb, var(--paper) 78%, transparent);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s;
+  }
+  .nav.scrolled { border-bottom-color: var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .mark {
+    font-family: var(--serif); font-size: 20px; font-weight: 500;
+    text-decoration: none; letter-spacing: -.01em;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .mark svg { width: 26px; height: 26px; }
+  .nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 14.5px; }
+  .nav ul a { text-decoration: none; color: var(--ink-soft); transition: color .2s; }
+  .nav ul a:hover { color: var(--ink); }
+  .theme-btn {
+    border: 1px solid var(--line); background: transparent; color: var(--ink);
+    width: 36px; height: 36px; border-radius: 50%;
+    display: grid; place-items: center; cursor: pointer;
+    transition: background .2s;
+  }
+  .theme-btn:hover { background: var(--paper-2); }
+  .theme-btn svg { width: 16px; height: 16px; }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  @media (max-width: 760px) { .nav ul { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; padding: clamp(40px, 8vw, 96px) 0 clamp(64px, 10vw, 128px); }
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: clamp(32px, 6vw, 88px);
+    align-items: center;
+  }
+  .hero .wrap > * { min-width: 0; }
+  .hero { overflow-x: clip; }
+  .news {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 6px 14px 6px 6px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 13.5px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    background: var(--card);
+    transition: border-color .2s, transform .2s;
+    max-width: 100%;
+  }
+  .news:hover { border-color: var(--moss); transform: translateY(-1px); }
+  .news b {
+    background: var(--moss); color: var(--paper);
+    font-weight: 600; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 3px 9px; border-radius: 999px; flex: none;
+  }
+  .news span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 350;
+    font-size: clamp(56px, 10.5vw, 132px);
+    line-height: .92;
+    letter-spacing: -.035em;
+    margin: 28px 0 0;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+  }
+  h1 em { font-style: italic; font-weight: 300; color: var(--moss); }
+  .pronouns {
+    font-family: var(--sans); font-size: 14px; letter-spacing: .04em;
+    color: var(--ink-soft); vertical-align: top;
+    display: inline-block; margin-left: .4em; transform: translateY(1.2em);
+    font-weight: 500;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-size: clamp(21px, 2.3vw, 27px);
+    line-height: 1.4;
+    font-weight: 350;
+    margin: 32px 0 0;
+    max-width: 30ch;
+    color: var(--ink);
+  }
+  .lede i { color: var(--clay); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 32px 0 0; padding: 0; list-style: none; }
+  .tags li {
+    font-size: 13.5px; padding: 6px 13px; border-radius: 999px;
+    border: 1px solid var(--line); color: var(--ink-soft);
+  }
+
+  .portrait { position: relative; justify-self: center; width: min(100%, 440px); }
+  .portrait .frame {
+    position: relative; z-index: 2;
+    aspect-ratio: 4 / 5;
+    border-radius: 999px 999px 28px 28px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -30px rgba(20, 30, 22, .45);
+  }
+  .portrait .frame img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
+  .portrait .orbits {
+    position: absolute; z-index: 1;
+    inset: -14% -18% -10% -18%;
+    width: 136%; height: 124%;
+    pointer-events: none;
+  }
+  .portrait figcaption {
+    position: absolute; z-index: 3;
+    left: -8%; bottom: 9%;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 12px 16px;
+    font-size: 13px; line-height: 1.4;
+    box-shadow: 0 16px 40px -20px rgba(20, 30, 22, .5);
+    max-width: 230px;
+  }
+  .portrait figcaption strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 16px; }
+  .portrait figcaption span { color: var(--ink-soft); }
+
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .portrait { order: -1; width: min(78%, 340px); margin-top: 8px; }
+    .portrait figcaption { left: auto; right: -12%; bottom: 6%; }
+  }
+
+  /* ---------- sections ---------- */
+  section { position: relative; }
+  .section { padding: clamp(72px, 11vw, 140px) 0; }
+  .eyebrow {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+  }
+  .eyebrow::before { content: ""; width: 36px; height: 1px; background: currentColor; opacity: .6; }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 350;
+    font-size: clamp(36px, 5.4vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -.025em;
+    margin: 0;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+  }
+  h2 em { font-style: italic; color: var(--moss); font-weight: 300; }
+  h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -.01em; }
+
+  /* ---------- now / IVL ---------- */
+  .now { background: var(--moss); color: var(--paper); overflow: hidden; }
+  :root[data-theme="dark"] .now { background: #22342a; color: var(--ink); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .now { background: #22342a; color: var(--ink); } }
+  .now .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: end; }
+  .now .eyebrow { color: inherit; opacity: .75; }
+  .now h2 em { color: var(--ochre); }
+  .now p { font-size: 18px; margin: 0 0 18px; opacity: .92; max-width: 52ch; }
+  .now .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px; border-radius: 999px;
+    font-size: 14.5px; font-weight: 500; text-decoration: none;
+    transition: transform .2s, background .2s, color .2s, border-color .2s;
+  }
+  .btn svg { width: 14px; height: 14px; transition: transform .2s; }
+  .btn:hover svg { transform: translate(2px, -2px); }
+  .btn-light { background: var(--paper); color: #1d2620; }
+  :root[data-theme="dark"] .btn-light { background: var(--ink); color: #141a16; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-light { background: var(--ink); color: #141a16; } }
+  .btn-ghost { border: 1px solid currentColor; color: inherit; opacity: .9; }
+  .btn-ghost:hover { opacity: 1; }
+  .now .big {
+    position: absolute; right: -4vw; top: 50%; transform: translateY(-50%);
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-size: clamp(160px, 30vw, 420px); line-height: 1;
+    opacity: .06; pointer-events: none; user-select: none;
+  }
+  @media (max-width: 860px) { .now .wrap { grid-template-columns: 1fr; } }
+
+  /* ---------- about ---------- */
+  .about .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 7vw, 110px); }
+  .about .body p { margin: 0 0 1.2em; color: var(--ink-soft); max-width: 60ch; }
+  .about .body p:first-child {
+    font-family: var(--serif); font-size: clamp(21px, 2vw, 25px); line-height: 1.45;
+    color: var(--ink); font-weight: 350;
+  }
+  .about .body p:first-child::first-letter {
+    float: left; font-size: 3.4em; line-height: .85; padding: .06em .1em 0 0;
+    color: var(--clay); font-style: italic;
+  }
+  .about .sticky { position: sticky; top: 110px; align-self: start; }
+  .quote {
+    margin: 40px 0 0; padding: 28px 0 0; border-top: 1px solid var(--line);
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-size: clamp(20px, 1.9vw, 24px); line-height: 1.4; color: var(--moss);
+  }
+  .quote cite { display: block; margin-top: 12px; font-family: var(--sans); font-style: normal; font-size: 13px; color: var(--ink-soft); letter-spacing: .02em; }
+  @media (max-width: 860px) { .about .wrap { grid-template-columns: 1fr; } .about .sticky { position: static; } }
+
+  /* ---------- relational sensitivity ---------- */
+  .rs { background: var(--paper-2); }
+  .rs-head { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: end; margin-bottom: clamp(48px, 7vw, 88px); }
+  .rs-head p { color: var(--ink-soft); margin: 0; max-width: 52ch; }
+  .rs-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+  .venn { width: 100%; max-width: 520px; justify-self: center; overflow: visible; }
+  .venn circle {
+    fill-opacity: .16; stroke-width: 1.5; mix-blend-mode: multiply;
+    transition: fill-opacity .4s, stroke-width .4s;
+    cursor: pointer;
+  }
+  :root[data-theme="dark"] .venn circle { mix-blend-mode: screen; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .venn circle { mix-blend-mode: screen; } }
+  .venn .c-self { fill: var(--c-self); stroke: var(--c-self); }
+  .venn .c-inter { fill: var(--c-inter); stroke: var(--c-inter); }
+  .venn .c-mat { fill: var(--c-mat); stroke: var(--c-mat); }
+  .venn[data-active="self"] .c-self,
+  .venn[data-active="inter"] .c-inter,
+  .venn[data-active="mat"] .c-mat { fill-opacity: .42; stroke-width: 2.5; }
+  .venn text { font-family: var(--serif); font-size: 17px; fill: var(--ink); pointer-events: none; }
+  .venn .core { font-style: italic; font-size: 13px; fill: var(--ink-soft); }
+  .venn .g-self { animation: drift1 14s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  .venn .g-inter { animation: drift2 16s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  .venn .g-mat { animation: drift3 18s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+  @keyframes drift1 { 50% { transform: translate(-6px, -4px); } }
+  @keyframes drift2 { 50% { transform: translate(6px, -5px); } }
+  @keyframes drift3 { 50% { transform: translate(0, 7px); } }
+
+  .facets { display: grid; gap: 14px; }
+  .facet {
+    display: grid; grid-template-columns: auto 1fr; gap: 6px 18px;
+    padding: 22px 24px; border-radius: 20px;
+    background: var(--card); border: 1px solid var(--line);
+    transition: transform .3s, border-color .3s, box-shadow .3s;
+    cursor: default;
+  }
+  .facet .dot { grid-row: span 2; width: 14px; height: 14px; border-radius: 50%; margin-top: 8px; }
+  .facet h3 { margin: 0; font-size: 22px; }
+  .facet p { margin: 0; color: var(--ink-soft); font-size: 15.5px; }
+  .facet[data-k="self"] .dot { background: var(--c-self); }
+  .facet[data-k="inter"] .dot { background: var(--c-inter); }
+  .facet[data-k="mat"] .dot { background: var(--c-mat); }
+  .facet.on { transform: translateX(6px); box-shadow: 0 20px 40px -28px rgba(20, 30, 22, .5); }
+  .facet[data-k="self"].on { border-color: var(--c-self); }
+  .facet[data-k="inter"].on { border-color: var(--c-inter); }
+  .facet[data-k="mat"].on { border-color: var(--c-mat); }
+  @media (max-width: 860px) { .rs-head, .rs-grid { grid-template-columns: 1fr; } .venn { max-width: 380px; } }
+
+  /* ---------- practice ---------- */
+  .practice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; margin-top: clamp(40px, 6vw, 72px); }
+  .practice-card { background: var(--paper); padding: clamp(28px, 3.4vw, 44px); position: relative; transition: background .3s; }
+  .practice-card:hover { background: var(--card); }
+  .practice-card .num { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--clay); }
+  .practice-card h3 { font-size: 26px; line-height: 1.15; margin: 18px 0 12px; }
+  .practice-card p { margin: 0; color: var(--ink-soft); font-size: 15.5px; }
+  .practice-card svg { width: 48px; height: 48px; margin-top: 28px; color: var(--moss); }
+  .practice-intro { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: end; }
+  .practice-intro p { color: var(--ink-soft); margin: 0; max-width: 52ch; }
+  @media (max-width: 960px) { .practice-grid { grid-template-columns: 1fr; } .practice-intro { grid-template-columns: 1fr; } }
+
+  /* ---------- featured handbook ---------- */
+  .feature {
+    display: grid; grid-template-columns: auto 1fr; gap: clamp(28px, 5vw, 64px);
+    align-items: center;
+    padding: clamp(28px, 4vw, 52px);
+    border-radius: 28px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    margin: clamp(40px, 6vw, 72px) 0 clamp(40px, 5vw, 56px);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .feature:hover { transform: translateY(-3px); box-shadow: 0 30px 60px -36px rgba(20, 30, 22, .45); }
+  .book {
+    width: clamp(140px, 16vw, 190px); aspect-ratio: 3 / 4.1;
+    border-radius: 4px 10px 10px 4px;
+    background: linear-gradient(160deg, #2f4a35, #213528);
+    color: #f3eee4;
+    padding: 18px 16px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: inset 6px 0 0 rgba(0,0,0,.18), 0 24px 40px -18px rgba(20,30,22,.55);
+    transform: rotate(-3deg);
+    transition: transform .4s;
+    position: relative; overflow: hidden;
+  }
+  .feature:hover .book { transform: rotate(0deg) scale(1.03); }
+  .book .t { font-family: var(--serif); font-size: clamp(15px, 1.6vw, 19px); line-height: 1.08; font-weight: 400; position: relative; z-index: 1; }
+  .book .t i { color: #e8bd55; }
+  .book .a { font-size: 9.5px; letter-spacing: .06em; text-transform: uppercase; opacity: .8; position: relative; z-index: 1; }
+  .book svg { position: absolute; right: -30px; bottom: 26px; width: 130px; opacity: .55; }
+  .feature .kicker { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--clay); }
+  .feature h3 { font-size: clamp(26px, 3vw, 38px); line-height: 1.1; margin: 10px 0 14px; }
+  .feature p { color: var(--ink-soft); margin: 0 0 20px; max-width: 58ch; }
+  .feature .go { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; color: var(--moss); }
+  .feature .go svg { width: 14px; height: 14px; transition: transform .2s; }
+  .feature:hover .go svg { transform: translate(3px, -3px); }
+  @media (max-width: 640px) { .feature { grid-template-columns: 1fr; } .book { justify-self: center; } }
+
+  /* ---------- publications ---------- */
+  .pubs { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .pubs li { border-bottom: 1px solid var(--line); }
+  .pubs a, .pubs .row {
+    display: grid; grid-template-columns: 90px 1fr auto; gap: 24px;
+    padding: 24px 4px; text-decoration: none; align-items: baseline;
+    transition: padding .3s, background .3s;
+  }
+  .pubs a:hover { padding-left: 16px; padding-right: 16px; background: var(--card); }
+  .pubs .yr { font-family: var(--serif); font-style: italic; color: var(--clay); font-size: 18px; }
+  .pubs .ti { font-family: var(--serif); font-size: clamp(19px, 1.9vw, 23px); line-height: 1.3; display: block; }
+  .pubs .ve { display: block; font-size: 14.5px; color: var(--ink-soft); margin-top: 6px; }
+  .pubs .ar { width: 18px; height: 18px; color: var(--ink-soft); transition: transform .3s, color .3s; }
+  .pubs a:hover .ar { transform: translate(3px, -3px); color: var(--clay); }
+  @media (max-width: 640px) { .pubs a, .pubs .row { grid-template-columns: 1fr auto; gap: 4px 16px; } .pubs .yr { grid-column: 1 / -1; } }
+
+  /* ---------- path ---------- */
+  .path { background: var(--paper-2); }
+  .timeline { list-style: none; margin: clamp(48px, 7vw, 80px) 0 0; padding: 0; position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+  .timeline::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 1px; background: var(--line); }
+  .timeline li { position: relative; padding-top: 40px; }
+  .timeline li::before {
+    content: ""; position: absolute; top: 2px; left: 0;
+    width: 15px; height: 15px; border-radius: 50%;
+    background: var(--paper-2); border: 1.5px solid var(--moss);
+  }
+  .timeline li.current::before { background: var(--clay); border-color: var(--clay); box-shadow: 0 0 0 6px color-mix(in srgb, var(--clay) 22%, transparent); animation: pulse 2.6s ease-in-out infinite; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 11px color-mix(in srgb, var(--clay) 0%, transparent); } }
+  .timeline .wh { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+  .timeline h3 { font-size: 20px; line-height: 1.2; margin: 8px 0 8px; }
+  .timeline p { font-size: 14.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+  @media (max-width: 960px) {
+    .timeline { grid-template-columns: 1fr; gap: 0; padding-left: 36px; }
+    .timeline::before { left: 7px; right: auto; top: 6px; bottom: 6px; width: 1px; height: auto; }
+    .timeline li { padding: 0 0 32px; }
+    .timeline li::before { left: -36px; top: 4px; }
+  }
+
+  /* ---------- contact ---------- */
+  .contact { text-align: center; }
+  .contact h2 { font-size: clamp(44px, 8vw, 104px); max-width: 14ch; margin: 0 auto; }
+  .contact p.sub { color: var(--ink-soft); max-width: 50ch; margin: 28px auto 0; }
+  .contact .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 40px; }
+  .btn-solid { background: var(--ink); color: var(--paper); }
+  .btn-solid:hover { background: var(--moss); }
+  .btn-line { border: 1px solid var(--line); color: var(--ink); }
+  .btn-line:hover { border-color: var(--ink); }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0 40px; font-size: 13.5px; color: var(--ink-soft); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  /* ---------- reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .no-js .reveal { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .venn g, .timeline li.current::before, .orbits * { animation: none !important; }
+  }
+  .orbits .o1 { animation: spin 60s linear infinite; transform-origin: 50% 50%; transform-box: view-box; }
+  .orbits .o2 { animation: spin 90s linear infinite reverse; transform-origin: 50% 50%; transform-box: view-box; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 16px; top: 12px; z-index: 200; background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 8px; }
+  :focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; border-radius: 6px; }
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Laura Gottlieb, home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke-width="3.5"><circle cx="24" cy="26" r="14" stroke="var(--c-self)"/><circle cx="40" cy="26" r="14" stroke="var(--c-inter)"/><circle cx="32" cy="40" r="14" stroke="var(--c-mat)"/></g></svg>
+      Laura Gottlieb
+    </a>
+    <div class="nav-right">
+      <nav aria-label="Sections">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#relational-sensitivity">Research</a></li>
+          <li><a href="#practice">Practice</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle dark mode">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <a class="news reveal" href="#now"><b>New</b><span>Now at IVL Swedish Environmental Research Institute</span></a>
+        <h1 class="reveal"><em>Laura</em><br>Gottlieb<span class="pronouns">she/they</span></h1>
+        <p class="lede reveal">Design researcher creating spaces where people can <i>think and make together</i> — and lead together.</p>
+        <ul class="tags reveal" aria-label="Fields">
+          <li>Participatory design</li>
+          <li>Joint inquiry</li>
+          <li>Shared leadership</li>
+          <li>Facilitation</li>
+          <li>Philosophy</li>
+        </ul>
+      </div>
+      <figure class="portrait reveal">
+        <svg class="orbits" viewBox="0 0 600 600" aria-hidden="true" fill="none">
+          <g class="o1"><circle cx="300" cy="300" r="270" stroke="var(--line)" stroke-dasharray="2 7"/><circle cx="300" cy="30" r="7" fill="var(--c-self)"/></g>
+          <g class="o2"><circle cx="300" cy="300" r="225" stroke="var(--line)"/><circle cx="525" cy="300" r="5" fill="var(--c-inter)"/><circle cx="75" cy="300" r="9" fill="var(--c-mat)"/></g>
+        </svg>
+        <div class="frame"><img src="images/laura-portrait.jpg" alt="Portrait of Laura Gottlieb smiling, outdoors among autumn trees" width="900" height="1125"></div>
+        <figcaption><strong>PhD, Innovation &amp; Design</strong><span>Mälardalen University</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- NOW -->
+  <section class="now section" id="now">
+    <div class="big" aria-hidden="true">IVL</div>
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Now</p>
+        <h2>A new chapter at <em>IVL</em>, together with Nina</h2>
+      </div>
+      <div class="reveal">
+        <p>Laura has recently joined <strong>IVL Swedish Environmental Research Institute</strong>, moving over alongside long-time collaborator <strong>Nina Božič Yams</strong>, who works in IVL’s Transformation area.</p>
+        <p>Together they continue a shared line of work: how organisations and public institutions can move from hierarchies towards trust, participation and leading together — as part of the wider transition to a sustainable society.</p>
+        <div class="links">
+          <a class="btn btn-light" href="https://www.ivl.se/english" target="_blank" rel="noopener">About IVL <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10 10 4M5 4h5v5"/></svg></a>
+          <a class="btn btn-ghost" href="https://career.ivl.se/en-GB/people/4125922-nina-bozic-yams" target="_blank" rel="noopener">Nina at IVL <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10 10 4M5 4h5v5"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="wrap">
+      <div class="sticky reveal">
+        <p class="eyebrow">About</p>
+        <h2>Co-creation is more than <em>method</em></h2>
+        <blockquote class="quote">“Co-creation transcends methods, requiring relational readiness and sensitivity to how participants engage with and support one another.”<cite>On relational sensitivity</cite></blockquote>
+      </div>
+      <div class="body reveal">
+        <p>Laura Gottlieb is a design researcher in the field of participatory design, bringing its methodologies into the public sector and into the everyday life of organisations.</p>
+        <p>Her recent work explores how organisations can foster deeper participation and shared agency among employees and citizens through self-leadership and shared leadership. Working with Nina Božič Yams in four years of participatory research with Swedish municipalities and agencies — first at RISE Research Institutes of Sweden — this became the handbook <a href="https://stephenreid321.github.io/transforming/" target="_blank" rel="noopener"><em>Transforming how we lead together</em></a>.</p>
+        <p>With a background in Philosophy and Information Experience Design, Laura’s interdisciplinary research asks how creative practices can support reflection and meaningful dialogue. Their PhD in Innovation and Design at Mälardalen University investigated the role of material artifacts in supporting joint inquiry, and introduced the concept of <strong>relational sensitivity</strong>: the essential readiness for thinking and making together.</p>
+        <p>As a qualified facilitator of Philosophical Enquiry and Integral Facilitation, Laura designs and holds spaces for joint inquiry and co-creation, often through artistic and designerly practices. Underneath it all is a simple aim — to contribute to deep, meaningful connection and reflection, and to a relational sensitivity that embraces diverse perspectives and the complexity of human experience.</p>
+        <p>Laura is also a member of <a href="https://posthumanitieshub.net/meet-the-group/laura-gottlieb/" target="_blank" rel="noopener">The Posthumanities Hub</a>, the feminist research collaboratory founded at Linköping University.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATIONAL SENSITIVITY -->
+  <section class="rs section" id="relational-sensitivity">
+    <div class="wrap">
+      <div class="rs-head">
+        <div class="reveal">
+          <p class="eyebrow">Research</p>
+          <h2>Relational <em>sensitivity</em></h2>
+        </div>
+        <p class="reveal">Participatory design depends on attuning to subtle, complex collaborative dynamics. Laura’s research articulates this attunement through three interwoven perspectives — each one shaping how people come to think and make together.</p>
+      </div>
+      <div class="rs-grid">
+        <svg class="venn reveal" id="venn" viewBox="0 0 440 420" role="img" aria-label="Three overlapping circles: sensitivity to self, to intersubjectivity, and to materiality and process">
+          <g class="g-self"><circle class="c-self" data-k="self" cx="160" cy="160" r="118"/></g>
+          <g class="g-inter"><circle class="c-inter" data-k="inter" cx="280" cy="160" r="118"/></g>
+          <g class="g-mat"><circle class="c-mat" data-k="mat" cx="220" cy="265" r="118"/></g>
+          <text x="105" y="128" text-anchor="middle">Self</text>
+          <text x="335" y="128" text-anchor="middle">Inter-</text>
+          <text x="335" y="148" text-anchor="middle">subjectivity</text>
+          <text x="220" y="330" text-anchor="middle">Materiality</text>
+          <text x="220" y="350" text-anchor="middle">&amp; process</text>
+          <text class="core" x="220" y="200" text-anchor="middle">together</text>
+        </svg>
+        <div class="facets">
+          <div class="facet reveal" data-k="self" tabindex="0">
+            <span class="dot"></span>
+            <h3>Sensitivity to self</h3>
+            <p>Noticing one’s own presence, assumptions and responses in a shared process — the inner readiness that collaboration rests on.</p>
+          </div>
+          <div class="facet reveal" data-k="inter" tabindex="0">
+            <span class="dot"></span>
+            <h3>Sensitivity to intersubjectivity</h3>
+            <p>Attending to what happens between people: how participants engage with, listen to and support one another.</p>
+          </div>
+          <div class="facet reveal" data-k="mat" tabindex="0">
+            <span class="dot"></span>
+            <h3>Sensitivity to materiality &amp; process</h3>
+            <p>Recognising how artifacts, materials and the shape of a process open up — or close down — possibilities for joint inquiry.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRACTICE -->
+  <section class="section" id="practice">
+    <div class="wrap">
+      <div class="practice-intro">
+        <div class="reveal">
+          <p class="eyebrow">Practice</p>
+          <h2>Holding spaces for <em>joint inquiry</em></h2>
+        </div>
+        <p class="reveal">Research and facilitation are one practice for Laura. Workshops, conversations and gatherings are designed as places where people can slow down, reflect, and discover things together that none of them would have found alone.</p>
+      </div>
+      <div class="practice-grid">
+        <article class="practice-card reveal">
+          <span class="num">i.</span>
+          <h3>Philosophical Enquiry</h3>
+          <p>Qualified facilitator of communities of philosophical enquiry — structured, open dialogue in which a group thinks carefully together about questions that matter.</p>
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M8 12h22a6 6 0 0 1 6 6v6a6 6 0 0 1-6 6H18l-7 6v-6H8z"/><path d="M24 20h16v12h-3v5l-6-5"/></svg>
+        </article>
+        <article class="practice-card reveal">
+          <span class="num">ii.</span>
+          <h3>Integral Facilitation</h3>
+          <p>Facilitation that holds the individual and the collective, the inner and the outer — attending to people as whole humans, not just roles in a process.</p>
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="9"/><circle cx="24" cy="24" r="2.5" fill="currentColor"/></svg>
+        </article>
+        <article class="practice-card reveal">
+          <span class="num">iii.</span>
+          <h3>Artistic &amp; designerly practices</h3>
+          <p>Collage, cards, movement and ritual. From the <em>Teatime</em> experiments — tableware and procession as prompts for philosophical conversation — to tools for university–society collaboration.</p>
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M10 22h24v6a10 10 0 0 1-10 10h-4a10 10 0 0 1-10-10z"/><path d="M34 24h2a4 4 0 0 1 0 8h-3"/><path d="M8 42h30"/><path d="M18 16c0-3 3-3 3-6M25 16c0-3 3-3 3-6"/></svg>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="section" id="work" style="padding-top: 0">
+    <div class="wrap">
+      <p class="eyebrow reveal">Selected work</p>
+      <h2 class="reveal">Writing &amp; <em>publications</em></h2>
+
+      <a class="feature reveal" href="https://stephenreid321.github.io/transforming/" target="_blank" rel="noopener">
+        <div class="book" aria-hidden="true">
+          <div class="t">Transforming how we <i>lead together</i></div>
+          <svg viewBox="0 0 64 64"><g fill="none" stroke-width="2"><circle cx="24" cy="26" r="14" stroke="#e07a52"/><circle cx="40" cy="26" r="14" stroke="#e8bd55"/><circle cx="32" cy="40" r="14" stroke="#a9c4a6"/></g></svg>
+          <div class="a">Božič Yams · Gottlieb · Aranda Muñoz</div>
+        </div>
+        <div>
+          <span class="kicker">Handbook · 2026</span>
+          <h3>Transforming how we lead together: moving from hierarchies towards co-creation</h3>
+          <p>A handbook for resilient and sustainable organisations and society — practices, stories and reflections for public sector teams moving towards trust, participation and leading together. Written with Nina Božič Yams and Álvaro Aranda Muñoz, and openly licensed under CC BY 4.0.</p>
+          <span class="go">Read the web edition <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10 10 4M5 4h5v5"/></svg></span>
+        </div>
+      </a>
+
+      <ul class="pubs">
+        <li class="reveal"><a href="https://doi.org/10.1080/15710882.2024.2317943" target="_blank" rel="noopener">
+          <span class="yr">2024</span>
+          <span><span class="ti">Relational sensitivity in participatory design</span><span class="ve">Gottlieb, L. · <em>CoDesign</em>, 20(3), 440–460</span></span>
+          <svg class="ar" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10 10 4M5 4h5v5"/></svg>
+        </a></li>
+        <li class="reveal"><a href="https://mdu.diva-portal.org/smash/person.jsf?pid=authority-person%3A59383" target="_blank" rel="noopener">
+          <span class="yr">PhD</span>
+          <span><span class="ti">Relational Sensitivity in Participatory Design: Thinking and making together through joint inquiry</span><span class="ve">Doctoral thesis · Mälardalen University</span></span>
+          <svg class="ar" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10 10 4M5 4h5v5"/></svg>
+        </a></li>
+        <li class="reveal"><a href="https://doi.org/10.1145/3537797.3537872" target="_blank" rel="noopener">
+          <span class="yr">2022</span>
+          <span><span class="ti">Relational sensitivity and participatory practice</span><span class="ve">Proceedings of the Participatory Design Conference (PDC 2022)</span></span>
+          <svg class="ar" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10 10 4M5 4h5v5"/></svg>
+        </a></li>
+        <li class="reveal"><a href="https://doi.org/10.1080/14606925.2021.2004724" target="_blank" rel="noopener">
+          <span class="yr">2022</span>
+          <span><span class="ti">Teatime: Exploring ways to support diverse narratives on sustainability through design</span><span class="ve">Gottlieb, L. &amp; Schaeffer, J. · <em>The Design Journal</em>, 25(1), 44–61</span></span>
+          <svg class="ar" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10 10 4M5 4h5v5"/></svg>
+        </a></li>
+        <li class="reveal"><a href="https://www.ipr.mdu.se/staff/3689-Laura_Gottlieb" target="_blank" rel="noopener">
+          <span class="yr">2018</span>
+          <span><span class="ti">The Knowledge Triangle Cards: supporting university–society collaborations</span><span class="ve">European Conference on Games Based Learning (ECGBL)</span></span>
+          <svg class="ar" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10 10 4M5 4h5v5"/></svg>
+        </a></li>
+        <li class="reveal"><a href="https://www.ipr.mdu.se/staff/3689-Laura_Gottlieb" target="_blank" rel="noopener">
+          <span class="yr">2018</span>
+          <span><span class="ti">Exploratory workshop using abstract collaging to reflect on university–society collaborations</span><span class="ve">Participatory Innovation Conference (PIN-C 2018)</span></span>
+          <svg class="ar" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10 10 4M5 4h5v5"/></svg>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PATH -->
+  <section class="path section" id="path">
+    <div class="wrap">
+      <p class="eyebrow reveal">Path</p>
+      <h2 class="reveal">From philosophy to <em>participation</em></h2>
+      <ol class="timeline">
+        <li class="reveal">
+          <span class="wh">BA</span>
+          <h3>Philosophy</h3>
+          <p>University of Southampton</p>
+        </li>
+        <li class="reveal">
+          <span class="wh">MA</span>
+          <h3>Information Experience Design</h3>
+          <p>Royal College of Art, London — teatimes as spaces for philosophical inquiry</p>
+        </li>
+        <li class="reveal">
+          <span class="wh">Research &amp; design</span>
+          <h3>Sweden &amp; China</h3>
+          <p>The Interactive Institute, and Peking Natural Science-art Organization</p>
+        </li>
+        <li class="reveal">
+          <span class="wh">PhD</span>
+          <h3>Innovation &amp; Design</h3>
+          <p>Mälardalen University — MDH LivingLab, co-production between university and society</p>
+        </li>
+        <li class="reveal">
+          <span class="wh">Researcher</span>
+          <h3>RISE</h3>
+          <p>Research Institutes of Sweden — self- and shared leadership in the public sector</p>
+        </li>
+        <li class="reveal current">
+          <span class="wh">Now</span>
+          <h3>IVL</h3>
+          <p>Swedish Environmental Research Institute — with Nina Božič Yams</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section" id="contact">
+    <div class="wrap">
+      <p class="eyebrow reveal" style="justify-content:center">Contact</p>
+      <h2 class="reveal">Let’s think and make <em>together</em></h2>
+      <p class="sub reveal">For research collaborations, facilitation, or conversations about participation and leading together.</p>
+      <div class="links reveal">
+        <a class="btn btn-solid" href="https://www.linkedin.com/in/laura-gottlieb-3920a3255/" target="_blank" rel="noopener">LinkedIn <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10 10 4M5 4h5v5"/></svg></a>
+        <a class="btn btn-line" href="https://www.researchgate.net/scientific-contributions/Laura-Gottlieb-2146276560" target="_blank" rel="noopener">ResearchGate <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10 10 4M5 4h5v5"/></svg></a>
+        <a class="btn btn-line" href="https://posthumanitieshub.net/meet-the-group/laura-gottlieb/" target="_blank" rel="noopener">Posthumanities Hub <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10 10 4M5 4h5v5"/></svg></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr">2026</span> Laura Gottlieb</span>
+    <span>Participatory design · Joint inquiry · Leading together</span>
+  </div>
+</footer>
+
+<script>
+  document.body.classList.remove('no-js');
+
+  // theme toggle (remembered per viewer)
+  (function () {
+    var root = document.documentElement;
+    try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+    document.getElementById('themeBtn').addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+
+  // nav border on scroll
+  var nav = document.getElementById('nav');
+  addEventListener('scroll', function () { nav.classList.toggle('scrolled', scrollY > 8); }, { passive: true });
+
+  // reveal on scroll
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    items.forEach(function (el, i) {
+      el.style.transitionDelay = (Array.prototype.indexOf.call(el.parentNode.children, el) % 6) * 70 + 'ms';
+      io.observe(el);
+    });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // relational sensitivity: link circles and cards
+  var venn = document.getElementById('venn');
+  var facets = document.querySelectorAll('.facet');
+  function activate(k) {
+    venn.setAttribute('data-active', k || '');
+    facets.forEach(function (f) { f.classList.toggle('on', f.dataset.k === k); });
+  }
+  facets.forEach(function (f) {
+    f.addEventListener('mouseenter', function () { activate(f.dataset.k); });
+    f.addEventListener('focus', function () { activate(f.dataset.k); });
+    f.addEventListener('mouseleave', function () { activate(null); });
+    f.addEventListener('blur', function () { activate(null); });
+  });
+  venn.querySelectorAll('circle').forEach(function (c) {
+    c.addEventListener('mouseenter', function () { activate(c.dataset.k); });
+    c.addEventListener('mouseleave', function () { activate(null); });
+    c.addEventListener('click', function () { activate(c.dataset.k); });
+  });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
